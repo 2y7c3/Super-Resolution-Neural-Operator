@@ -1,0 +1,59 @@
+train_dataset:
+  dataset:
+    name: image-folder
+    args:
+      root_path: ./data/DIV2K_train_HR
+      repeat: 20
+  wrapper:
+    name: sr-implicit-downsampled-fast
+    args:
+      inp_size: 128
+      scale_max: 4
+      augment: true
+  batch_size: 64
+
+val_dataset:
+  dataset:
+    name: image-folder
+    args:
+      root_path: ./data/DIV2K_valid_HR
+  wrapper:
+      name: sr-implicit-downsampled-fast
+      args:
+        scale_min: 2
+        scale_max: 2
+  batch_size: 1
+eval_type: div2k-2
+eval_bsize: 500
+
+
+data_norm:
+  inp: {sub: [0.5], div: [0.5]}
+  gt: {sub: [0.5], div: [0.5]}
+
+model:
+  name: sronet
+  args:
+    encoder_spec:
+      name: edsr-baseline
+      args:
+        no_upsampling: true
+    width: 256
+    blocks: 16
+
+optimizer:
+  name: adam
+  args:
+    lr: 4.e-5
+    #weight_decay: 1.e-5
+epoch_max: 1050
+warmup_step_lr:
+  multiplier: 10
+  total_epoch: 50
+#multi_step_lr:
+#  milestones: [200, 400, 600, 800, 1000]
+#  gamma: 0.5
+
+epoch_val: 50
+epoch_save: 250
+
