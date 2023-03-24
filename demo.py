@@ -35,7 +35,7 @@ if __name__ == '__main__':
     
     cell_factor = max(scale/scale_max, 1)
     #pred = batched_predict(model, ((img - 0.5) / 0.5).cuda().unsqueeze(0),
-    #    coord.unsqueeze(0), cell_factor*cell, bsize=300)[0]
-    pred = model(((img - 0.5) / 0.5).cuda().unsqueeze(0),coord.unsqueeze(0), cell_factor*cell.unsqueeze(0))
+    #    coord.unsqueeze(0), cell_factor*cell, bsize=300).squeeze(0)
+    pred = model(((img - 0.5) / 0.5).cuda().unsqueeze(0),coord.unsqueeze(0), cell_factor*cell).squeeze(0)
     pred = (pred * 0.5 + 0.5).clamp(0, 1).reshape(3, h, w).cpu()
     transforms.ToPILImage()(pred).save(args.output)
