@@ -35,5 +35,18 @@ RDN-SRNO|[Google Drive](https://drive.google.com/file/d/12RL7b5ZAz7iKdyuAD7Wfy15
 ## Demo
 `python demo.py --input input.png --model save/edsr-baseline_epoch-1000.pth --scale 2 --output output.png`
 
+## Citation
+If you find our work useful in your research, please consider citing:
+```
+@InProceedings{Wei_2023_CVPR, 
+author = {Wei, Min and Zhang, Xuesong}, 
+title = {Super-Resolution Neural Operator}, 
+booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, 
+month = {June}, 
+year = {2023}, 
+pages = {18247-18256}
+}
+```
+
 ## Acknowledgements
 This code is built on [LIIF](https://github.com/yinboc/liif) and [LTE](https://github.com/jaewon-lee-b/lte)
